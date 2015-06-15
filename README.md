@@ -1,11 +1,8 @@
-```
 #Learning Plan:
 #Porting the Theatre@First Website to WordPress (Draft v2)
-```
-```
+
 Leah Bateman
 6/14/2015
-```
 
 ##Introduction
 
