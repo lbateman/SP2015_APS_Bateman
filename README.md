@@ -6,7 +6,7 @@ Leah Bateman
 
 ##Introduction
 
-Theatre@First (http://www.theatreatfirst.org/) is a registered non-profit community theater group based in Somerville, MA. It was founded by two very good friends of mine in 2004. Since August 2014, I have been volunteering as T@F’s webmaster, and am responsible for all updates to the site, which is currently based on old HTML, CSS, and some basic server-side includes. A long-standing goal has been for a webmaster to port the site to a WordPress installation so that other people in the group will be able to update the site without the webmaster becoming a bottleneck. This will also free up the webmaster’s time to take on a more strategic role with regard to the site. As part of the PHP and WordPress class last spring, I completed development of a homepage and a show page; this summer, I plan to continue development of the site.
+[Theatre@First] (http://www.theatreatfirst.org/) is a registered non-profit community theater group based in Somerville, MA. It was founded by two very good friends of mine in 2004. Since August 2014, I have been volunteering as T@F’s webmaster, and am responsible for all updates to the site, which is currently based on old HTML, CSS, and some basic server-side includes. A long-standing goal has been for a webmaster to port the site to a WordPress installation so that other people in the group will be able to update the site without the webmaster becoming a bottleneck. This will also free up the webmaster’s time to take on a more strategic role with regard to the site. As part of the PHP and WordPress class last spring, I completed development of a homepage and a show page; this summer, I plan to continue development of the site.
 
 ##Total Project Deliverable Summary
 
