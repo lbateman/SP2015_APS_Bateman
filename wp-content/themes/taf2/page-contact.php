@@ -20,11 +20,8 @@ get_header(); ?>
 						 		// loop through the rows of data
 		    					while ( have_rows('email') ) : the_row(); ?>
 		    						<tr>
-			    						<?php //get the email address for the mailto link
-			    						$addr = get_sub_field('email_address');
-								        // display a sub field value ?>
 								        <td><?php the_sub_field('email_purpose'); ?>:</td>
-							        	<td><a href="mailto:<?php $addr ?>"><?php the_sub_field('email_address'); ?></a></td>
+							        	<td><a href="mailto:<?php the_sub_field('email_address'); ?>"><?php the_sub_field('email_address'); ?></a></td>
 							        </tr>
 			    					<?php endwhile;
 								else :

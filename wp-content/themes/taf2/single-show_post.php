@@ -41,7 +41,7 @@ get_header(); ?>
 				
 				<section class="location-info">
 					<h2>Location</h2>
-					<?php the_field('venue_name') ?>
+					<a href="<?php the_field('venue_url'); ?>"><?php the_field('venue_name'); ?></a>
 					<p><?php the_field('venue_address'); ?></p>
 					<?php 
 						$location = get_field('location');
@@ -62,7 +62,9 @@ get_header(); ?>
 								<?php the_sub_field('ticket_service_description'); ?>
 							</section> <!-- End of ticket-service -->
 						<?php endwhile; 
-					endif; ?>
+					else : ?>
+						<p>Please check back soon for ticket information.</p>
+					<?php endif; ?>
 				</section><!-- End of ticket-info -->
 				
 				<section class="director-info">

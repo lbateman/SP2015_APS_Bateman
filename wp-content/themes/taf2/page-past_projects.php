@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Past_Projects
+Template Name: PastProjects
 */
 
 get_header(); ?>
@@ -10,20 +10,41 @@ get_header(); ?>
 
 			<!-- show information (left column) -->
 			<section class="main-content">
-				<h1>Past Projects</h1>
+				<h1><?php the_title(); ?></h1>
 					<?php
-						// check if the repeater field has rows of data
-						if( have_rows('venue') ):
-					 		// loop through the rows of data
-	    					while ( have_rows('venue') ) : the_row();
-						        // display a sub field value ?>
-						        <h2><?php the_sub_field('venue_name'); ?></h2>
-					        	<?php the_sub_field('venue_address'); ?>
-					        	<?php the_sub_field('venue_description'); ?>
-	    					<?php endwhile;
-						else :
-						    // no rows found
+
+						//set up variable for year
+						$currentyear = date("Y") ;
+
+						// set up loop to cycle through years
+						while ($currentyear >= 2004) : // 2004 was the first year of productions
+						
+							// print year name						
+							echo "<h2>$currentyear</h2>" ;
+
+							// set up new query
+							$thisyear = new WP_Query( array ( 
+								'post_type' => 'show_post',
+								'category_name' => 'past-shows', 
+								'show_year' => $currentyear,
+							) ) ;
+
+							// get posts that match query
+							if( $thisyear->have_posts() ):
+		    					while ( $thisyear->have_posts() ) :
+		    						$thisyear->the_post(); ?>
+		    						<a href="<?php the_permalink(); ?>"><img class="pastprojects" src="<?php the_field('past_projects_logo'); ?>" alt="<?php the_title(); ?> Logo"</a>
+							        <p><?php the_title(); ?></p>
+						        	<p><?php the_field('performance_dates'); ?></p>
+						        	<img src="http://localhost:1337/taf2/wp-content/uploads/2015/08/pdf-icon_sm.jpg" alt="PDF File"><a href="<?php the_field('program_file'); ?>"><strong>Program</strong></a>
+		    					<?php endwhile;
 							endif;
+
+							// reset query and decrement year
+							wp_reset_postdata() ;
+							--$currentyear ;
+						endwhile ;
+
 					?>
 
 			</section> <!-- main-content -->

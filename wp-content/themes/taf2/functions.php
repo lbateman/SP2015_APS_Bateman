@@ -205,7 +205,7 @@ function create_my_post_types() {
      )
   );
 
- register_post_type( 'press_post', array(
+register_post_type( 'press_post', array(
       'labels' => array(
         'name' => __( 'Press' ),
         'singular_name' => __( 'Article' ),
@@ -233,6 +233,7 @@ function create_my_post_types() {
       'hierarchical' => false,
     )
   );
+
 }
 
 
