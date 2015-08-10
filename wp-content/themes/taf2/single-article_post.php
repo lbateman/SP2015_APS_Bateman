@@ -22,55 +22,21 @@ get_header(); ?>
 				<section class="audition-info">
 					<h2>General Audition Information</h2>
 					<p><strong>Auditions:</strong> <?php the_field('audition_dates'); ?></p>
-
-					<?php // show callback date only if field is filled in
-					$callback = get_field('callback_date') ;
-					 if( !empty($callback) ) : ?>
-						<p><strong>Callbacks:</strong> <?php the_field('callback_date'); ?></p>
-					<?php endif; ?>
-
-					<?php // set up some variables to use in content checks
-					$aud_info = get_field('audition_info') ;
-					$aud_form = get_field('audition_form') ;
-					$aud_materials = get_field('audition_materials') ;
-					$aud_sides = get_field('audition_sides') ; ?>
-
-					<?php // set up content checks for audition info sheet, audition form, audition sides, and display content appropriately
-
-					if ( !empty($aud_info) ) : ?>
-						<p>Please read all the details on the <a href="<?php the_field('audition_information_sheet') ?>">audition information sheet</a>, and fill in the <a href="#audform">webform at the bottom of this page</a> to make an appointment. You will receive a confirmation email shortly.</p>
-					<?php else : ?>
-						<p>Please fill in the <a href="#audform">webform at the bottom of this page</a> to make an appointment. You will receive a confirmation email shortly.</p>	
-					<?php endif; ?>
-
-					<p>If you have additional questions, need to cancel your appointment, or the webform doesn't work for you, please email <a href="mailto:auditions@theatreatfirst.org">auditions@theatreatfirst.org</a>.</p>
+					<p><strong>Callbacks:</strong> <?php the_field('callback_date'); ?></p>
+					<p>Please read all the details on the audition information sheet, and fill in the <a href="#audform">webform at the bottom of this page</a> to make an appointment. You will receive a confirmation email shortly.</p>
 					<ul>
-						<li><strong>Audition Location:</strong> <?php the_field('audition_venue'); ?> <br />
-							<?php the_field('venue_information'); ?></li>
-
-						<?php if ( !empty($aud_info) ) : ?>
-							<li><strong>Audition Information:</strong> For complete audition information, including character descriptions and show requirements, please read through the <a href="<?php the_field('audition_information_sheet'); ?>">audition information sheet</a>.</li>
-						<?php endif; ?>
-
-						<?php if ( !empty($aud_form) ) : ?>
-							<li><strong>Audition Form:</strong> Please fill out the <a href="<?php the_field('audition_form'); ?>">audition form</a> and bring it with you to auditions. Additional copies will be available at auditions. Head shots and resumes are not requested.</li>
-						<?php endif; ?>
-
-						<?php if ( !empty($aud_materials) ) : ?>				
-							<li><strong>Audition Materials:</strong> <?php the_field('audition_materials'); ?></li>
-						<?php endif; ?>
-
-						<?php if ( !empty($aud_sides) ) : ?>
-							<li><strong>Audition Sides:</strong> Before auditioning, please review the <a href="<?php the_field('audition_sides'); ?>">audition sides</a>. Please get comfortable with them, as you may be asked to read any of them.</li>
-						<?php endif; ?>
-
-						<li><strong>Calendar:</strong> Please bring your calendar to auditions (or fill out the audition form calendar section in advance) so you can list all potential conflicts with rehearsal dates.</li>
+						<li><strong>Audition Location:</strong> <?php the_field('audition_venue'); ?></li>
+						<li><strong>Audition Information:</strong> <?php the_field('audition_information_blurb'); ?></li>
+						<li><strong>Audition Form:</strong> <?php the_field('audition_form_blurb'); ?></li>
+						<li><strong>Audition Materials:</strong> <?php the_field('audition_materials'); ?></li>
+						<li><strong>Audition Sides:</strong> <?php the_field('audition_sides_blurb'); ?></li>
+						<li><strong>Calendar:</strong> <?php the_field('calendar_blurb'); ?></li>
 					</ul>
 				</section> <!-- End of audition-info -->
 
 				<section class="performance-info">
 					<h3>About the Show</h3>
-					<p><strong>Performance Info:</strong> Performances will take place at <?php the_field('audition_venue'); ?> on <?php the_field('performance_dates'); ?>.</p>
+					<p><strong>Performance Info:</strong> <?php the_field('performance_info'); ?></p>
 					<p><strong>About the Play:</strong> <?php the_field('about_the_play'); ?></p>
 					<p><strong>About the Director:</strong> <?php the_field('about_the_director'); ?></p>
 				</section><!-- End of performance-info -->
@@ -90,7 +56,7 @@ get_header(); ?>
 					<h2>Audition Reservation Form</h2>
 						<form action="http://formmail.dreamhost.com/cgi-bin/formmail.cgi" method="POST">
 							<input type=hidden name="recipient" value="auditions@theatreatfirst.org">
-        					<input type=hidden name="subject" value="Audition Reservations <?php the_title(); ?>">
+        					<input type=hidden name="subject" value="Audition Reservations TROJAN WOMEN">
 							<table>
 								<tr>
 									<td>Name</td>
@@ -103,16 +69,18 @@ get_header(); ?>
 								<tr>
 									<td>Preferred Timeslot</td>
 								</tr>
-								<?php // loop through the timeslots 
-								if( have_rows('audition_timeslots') ) :
-									while ( have_rows('audition_timeslots') ) : 
-										the_row(); ?>
-										<tr>
-											<td><input type="radio" name="Date" value="<?php the_sub_field('short_timeslot'); ?>"></td>
-											<td><?php the_sub_field('long_timeslot'); ?></td>
-										</tr>
-									<?php endwhile ;
-								endif ; ?>
+								<tr>
+									<td><input type="radio" name="Date" value="9/2 7pm"></td>
+									<td>Tuesday, September 2, 7pm</td>
+								</tr>
+								<tr>
+									<td><input type="radio" name="Date" value="9/2 8pm"></td>
+									<td>Tuesday, September 2, 8pm</td>
+								</tr>
+								<tr>
+									<td><input type="radio" name="Date" value="9/2 9pm"></td>
+									<td>Tuesday, September 2, 9pm</td>
+								</tr>
 								<tr>
 									<td>&nbsp;</td>
 									<td></td>
@@ -121,16 +89,18 @@ get_header(); ?>
 								<tr>
 									<td>Second Choice</td>
 								</tr>
-								<?php // loop through the timeslots again 
-								if( have_rows('audition_timeslots') ) :
-									while ( have_rows('audition_timeslots') ) : 
-										the_row(); ?>
-										<tr>
-											<td><input type="radio" name="Date2" value="<?php the_sub_field('short_timeslot'); ?>"></td>
-											<td><?php the_sub_field('long_timeslot'); ?></td>
-										</tr>
-									<?php endwhile ;
-								endif ; ?>
+								<tr>
+									<td><input type="radio" name="Date" value="9/2 7pm"></td>
+									<td>Tuesday, September 2, 7pm</td>
+								</tr>
+								<tr>
+									<td><input type="radio" name="Date" value="9/2 8pm"></td>
+									<td>Tuesday, September 2, 8pm</td>
+								</tr>
+								<tr>
+									<td><input type="radio" name="Date" value="9/2 9pm"></td>
+									<td>Tuesday, September 2, 9pm</td>
+								</tr>
 								<tr>
 									<td width="663" height="123" colspan="3">
 										<div align="center">
